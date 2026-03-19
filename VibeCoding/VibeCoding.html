@@ -1,0 +1,699 @@
+const Index = () => {
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Bouzida Cheherazad</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 30%, #e0f7fa 60%, #fff3e0 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar-custom {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 1rem 0;
+    }
+    .navbar-custom .navbar-brand {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: #b388ff;
+    }
+    .navbar-custom .nav-link {
+      color: #6d6875;
+      font-weight: 500;
+      margin: 0 0.5rem;
+      transition: color 0.3s;
+    }
+    .navbar-custom .nav-link:hover {
+      color: #b388ff;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      animation: slideUp 1s ease both;
+    }
+
+    .badge-available {
+      background: #c8e6c9;
+      color: #388e3c;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .badge-available .dot {
+      width: 8px;
+      height: 8px;
+      background: #66bb6a;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      color: #2d2d3a;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 .first-name {
+      color: #b388ff;
+    }
+
+    .hero h1 .last-name {
+      color: #f48fb1;
+    }
+
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: #9e9e9e;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .description {
+      font-size: 1.05rem;
+      color: #78909c;
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-pastel {
+      background: linear-gradient(135deg, #b388ff, #f48fb1);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-pastel:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(179, 136, 255, 0.4);
+      color: #fff;
+    }
+
+    .btn-outline-pastel {
+      background: transparent;
+      color: #b388ff;
+      border: 2px solid #b388ff;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-outline-pastel:hover {
+      background: #b388ff;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* Social icons */
+    .social-icons {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icons a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b388ff;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background: #b388ff;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(179, 136, 255, 0.3);
+    }
+
+    /* Hero image area */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: slideUp 1s ease 0.3s both;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 3rem;
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .hero-card .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #b388ff, #f48fb1, #80cbc4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2.5rem;
+      color: #fff;
+      font-weight: 700;
+      overflow: hidden;
+    }
+
+    .hero-card .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-card h3 {
+      color: #2d2d3a;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-card p {
+      color: #9e9e9e;
+      font-size: 0.9rem;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .stats .stat-item {
+      text-align: center;
+    }
+
+    .stats .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #b388ff;
+    }
+
+    .stats .stat-label {
+      font-size: 0.75rem;
+      color: #9e9e9e;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2d2d3a;
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: #9e9e9e;
+      font-size: 1.1rem;
+    }
+
+    /* Projects Section */
+    #projets {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.8);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .project-image {
+      height: 200px;
+      background: linear-gradient(135deg, #b388ff, #f48fb1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 3rem;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-content h4 {
+      color: #2d2d3a;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-content p {
+      color: #78909c;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .project-tags span {
+      background: rgba(179, 136, 255, 0.1);
+      color: #b388ff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* About Section */
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h3 {
+      color: #2d2d3a;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .about-text p {
+      color: #78909c;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .skills {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .skill-item {
+      background: rgba(179, 136, 255, 0.1);
+      color: #b388ff;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.8);
+      padding: 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: #6d6875;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid rgba(179, 136, 255, 0.2);
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      transition: border-color 0.3s;
+      background: rgba(255,255,255,0.9);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #b388ff;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Floating shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: float 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .shape-1 {
+      width: 200px; height: 200px;
+      background: #b388ff;
+      top: 10%; right: 5%;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 150px; height: 150px;
+      background: #f48fb1;
+      bottom: 15%; left: 5%;
+      animation-delay: 2s;
+    }
+
+    .shape-3 {
+      width: 100px; height: 100px;
+      background: #80cbc4;
+      top: 40%; left: 15%;
+      animation-delay: 4s;
+    }
+
+    /* Animations */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.8); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-visual { margin-top: 3rem; }
+      .hero { text-align: center; padding-top: 100px; }
+      .description { margin-left: auto; margin-right: auto; }
+      .social-icons { justify-content: center; }
+      .btn-group-hero { justify-content: center; }
+      .about-content { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#accueil">Cheherazad</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Menu de navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#accueil"><i class="fas fa-home me-1"></i> Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projets"><i class="fas fa-code me-1"></i> Projets</a></li>
+          <li class="nav-item"><a class="nav-link" href="#apropos"><i class="fas fa-user me-1"></i> À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i> Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="accueil" class="hero">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7 hero-content">
+
+          <div class="badge-available">
+            <span class="dot"></span>
+            Disponible pour projets — 2025
+          </div>
+
+          <h1>
+            <span class="first-name">Bouzida</span><br />
+            <span class="last-name">Cheherazad</span>
+          </h1>
+
+          <p class="subtitle">
+            <i class="fas fa-laptop-code me-2"></i>Frontend Developer · Creative Designer
+          </p>
+
+          <p class="description">
+            Passionnée par la création d'interfaces élégantes et performantes.
+            Je transforme les idées en expériences numériques mémorables, pixel par pixel.
+          </p>
+
+          <div class="d-flex gap-3 flex-wrap btn-group-hero">
+            <a href="#projets" class="btn-pastel">
+              <i class="fas fa-rocket"></i> Voir mes projets
+            </a>
+            <a href="#" class="btn-outline-pastel" download>
+              <i class="fas fa-download"></i> Mon CV
+            </a>
+          </div>
+
+          <div class="social-icons">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          </div>
+
+        </div>
+
+        <div class="col-lg-5 hero-visual">
+          <div class="hero-card">
+            <div class="avatar">
+              <!-- Remplacez par votre photo: <img src="votre-photo.jpg" alt="Bouzida Cheherazad" /> -->
+              BC
+            </div>
+            <h3>Bouzida Cheherazad</h3>
+            <p><i class="fas fa-map-marker-alt me-1"></i> Algérie</p>
+            <div class="stats">
+              <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Projets</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Ans Exp.</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Clients</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projets">
+    <div class="container">
+      <div class="section-title">
+        <h2>Mes Projets</h2>
+        <p>Découvrez mes réalisations récentes</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="project-card">
+            <div class="project-image"><i class="fas fa-shopping-bag"></i></div>
+            <div class="project-content">
+              <h4>E-Commerce App</h4>
+              <p>Application de commerce électronique moderne avec panier et paiement.</p>
+              <div class="project-tags">
+                <span>React</span>
+                <span>Node.js</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="project-card">
+            <div class="project-image"><i class="fas fa-tasks"></i></div>
+            <div class="project-content">
+              <h4>Task Manager</h4>
+              <p>Gestionnaire de tâches collaboratif avec tableau Kanban.</p>
+              <div class="project-tags">
+                <span>Vue.js</span>
+                <span>Firebase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="project-card">
+            <div class="project-image"><i class="fas fa-mobile-alt"></i></div>
+            <div class="project-content">
+              <h4>Mobile Dashboard</h4>
+              <p>Tableau de bord responsive pour analytics mobile.</p>
+              <div class="project-tags">
+                <span>React Native</span>
+                <span>Chart.js</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="apropos">
+    <div class="container">
+      <div class="section-title">
+        <h2>À Propos</h2>
+        <p>En savoir plus sur mon parcours</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>Developer & Designer Créative</h3>
+          <p>Je suis une développeuse frontend passionnée basée en Algérie. Avec plus de 2 ans d'expérience, je crée des interfaces utilisateur modernes et intuitives.</p>
+          <p>Mon approche combine design esthétique et code propre pour livrer des produits numériques de haute qualité.</p>
+          <div class="skills">
+            <span class="skill-item">React</span>
+            <span class="skill-item">TypeScript</span>
+            <span class="skill-item">Tailwind CSS</span>
+            <span class="skill-item">Figma</span>
+            <span class="skill-item">Node.js</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Travaillons ensemble sur votre prochain projet</p>
+      </div>
+      <div class="contact-form">
+        <form>
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" id="name" placeholder="Votre nom" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="votre@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" placeholder="Votre message..." required></textarea>
+          </div>
+          <button type="submit" class="btn-pastel w-100">
+            <i class="fas fa-paper-plane"></i> Envoyer
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        `,
+      }}
+    />
+  );
+};
+
+export default Index;
+        
