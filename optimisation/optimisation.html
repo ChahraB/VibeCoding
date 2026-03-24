@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Composant Carte de Prix</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+        flex-wrap: wrap;
+      }
+
+      .pricing-card {
+        width: 320px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); /* ✅ FIX: box-shadow correct */
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+      }
+
+      .pricing-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+      }
+
+      .pricing-card.popular::before {
+        background: linear-gradient(90deg, #f093fb, #f5576c);
+      }
+
+      .badge {
+        position: absolute;
+        top: 20px;
+        right: -35px;
+        background: linear-gradient(90deg, #f093fb, #f5576c);
+        color: white;
+        padding: 5px 40px;
+        font-size: 12px;
+        font-weight: bold;
+        transform: rotate(45deg);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        font-size: 28px;
+        font-weight: 800;
+        color: #2d3748;
+        margin-bottom: 10px;
+        letter-spacing: -0.5px;
+      }
+
+      .price {
+        font-size: 48px;
+        font-weight: 700;
+        color: #667eea;
+        margin: 20px 0;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .price .currency {
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .price .period {
+        font-size: 16px;
+        color: #718096;
+        font-weight: 500;
+      }
+
+      .features {
+        list-style: none;
+        margin: 30px 0;
+        text-align: left;
+      }
+
+      .features li {
+        padding: 12px 0;
+        border-bottom: 1px solid #e2e8f0;
+        color: #4a5568;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+      }
+
+      .features li:last-child {
+        border-bottom: none;
+      }
+
+      .features li::before {
+        content: "✓";
+        color: #48bb78;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .btn {
+        width: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        background: linear-gradient(90deg, #764ba2, #667eea);
+      }
+
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .btn.popular-btn {
+        background: linear-gradient(90deg, #f093fb, #f5576c);
+      }
+
+      .btn.popular-btn:hover {
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        background: linear-gradient(90deg, #f5576c, #f093fb);
+      }
+
+      /* Animation d'entrée */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .pricing-card {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      .pricing-card:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+
+      .pricing-card:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Les cartes seront injectées ici par JavaScript -->
+    <div id="pricing-container"></div>
+
+    <script>
+      /**
+       * Composant réutilisable PricingCard
+       * @param {Object} config - Configuration de la carte
+       * @param {string} config.title - Titre du plan
+       * @param {number} config.price - Prix mensuel
+       * @param {string} config.currency - Symbole monétaire (défaut: '$')
+       * @param {Array} config.features - Liste des fonctionnalités
+       * @param {string} config.buttonText - Texte du bouton
+       * @param {boolean} config.popular - Mettre en avant ce plan
+       * @param {Function} config.onClick - Callback au clic sur le bouton
+       */
+      function PricingCard(config) {
+        const {
+          title = "Basic Plan",
+          price = 9.99,
+          currency = "$",
+          features = [],
+          buttonText = "Start Trial",
+          popular = false,
+          onClick = () => alert(`Vous avez choisi le plan ${title}!`),
+        } = config;
+
+        // Création de l'élément conteneur
+        const card = document.createElement("div");
+        card.className = `pricing-card ${popular ? "popular" : ""}`;
+
+        // HTML interne de la carte
+        card.innerHTML = `
+        ${popular ? '<div class="badge">POPULAIRE</div>' : ""}
+        <h2 class="title">${title}</h2>  <!-- ✅ FIX: balise correctement fermée -->
+        <div class="price">
+            <span class="currency">${currency}</span>
+            <span>${price}</span>
+            <span class="period">/month</span>
+        </div>
+        <ul class="features">
+            ${features.map((feature) => `<li>${feature}</li>`).join("")}
+        </ul>
+        <button class="btn ${popular ? "popular-btn" : ""}" type="button" aria-label="Souscrire au ${title}">
+            ${buttonText}
+        </button>
+    `;
+
+        // Ajout de l'événement click fonctionnel
+        const button = card.querySelector(".btn");
+        button.addEventListener("click", onClick);
+
+        return card;
+      }
+
+      // Initialisation des cartes
+      const container = document.getElementById("pricing-container");
+      container.style.display = "flex";
+      container.style.gap = "30px";
+      container.style.flexWrap = "wrap";
+      container.style.justifyContent = "center";
+
+      // Configuration des trois plans
+      const plans = [
+        {
+          title: "Basic Plan",
+          price: 9.99,
+          features: [
+            "1 GB Storage",
+            "Basic Support",
+            "All Core Features",
+            "Email Assistance",
+          ],
+          buttonText: "Start Trial",
+          popular: false,
+        },
+        {
+          title: "Pro Plan",
+          price: 29.99,
+          features: [
+            "10 GB Storage",
+            "Priority Support",
+            "All Core Features",
+            "Advanced Analytics",
+            "API Access",
+            "Custom Domain",
+          ],
+          buttonText: "Get Started",
+          popular: true,
+          onClick: () => {
+            // Animation de feedback visuel
+            const btn = event.target;
+            btn.style.transform = "scale(0.95)";
+            setTimeout(() => {
+              btn.style.transform = "scale(1.05)";
+              alert("🚀 Excellent choix ! Vous allez adorer le Pro Plan !");
+            }, 150);
+          },
+        },
+        {
+          title: "Enterprise",
+          price: 99.99,
+          features: [
+            "Unlimited Storage",
+            "24/7 Dedicated Support",
+            "All Pro Features",
+            "White Label Solution",
+            "SLA Guarantee",
+            "Custom Integrations",
+          ],
+          buttonText: "Contact Sales",
+          popular: false,
+          onClick: () => alert("📞 Un conseiller vous contactera sous 24h !"),
+        },
+      ];
+
+      // Rendu des cartes
+      plans.forEach((plan) => {
+        const card = PricingCard(plan);
+        container.appendChild(card);
+      });
+    </script>
+  </body>
+</html>
+<!-- Bug HTML : <h2 class="title">Basic Plan<h2> - La balise de fermeture est mal formée (<h2> au lieu de </h2>)
+Bug CSS : box-shdow au lieu de box-shadow (faute de frappe)
+Problème de design : Pas de bordures arrondies, pas d'ombre visible, alignement texte à gauche non optimal pour une carte de prix
+Accessibilité : Le bouton n'a pas de type="button" ni d'attributs ARIA-->
