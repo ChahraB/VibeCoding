@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinéma Explorer - Découvrez les meilleurs films</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#films">Aller au contenu</a>
+
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-film"></i>
+          <span>Cinéma Explorer</span>
+        </div>
+        <nav class="nav" id="mainNav">
+          <a href="#accueil" class="nav-link active">Accueil</a>
+          <a href="#films" class="nav-link">Films</a>
+          <a href="#favoris" class="nav-link">Favoris</a>
+        </nav>
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Ouvrir ou fermer le menu"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero" id="accueil">
+      <div class="hero-content">
+        <h1 class="hero-title">Découvrez l'univers du cinéma</h1>
+        <p class="hero-subtitle">
+          Explorez les meilleurs films, leurs histoires et leurs créateurs
+        </p>
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="searchInput"
+            aria-label="Rechercher un film"
+            placeholder="Rechercher un film..."
+          />
+        </div>
+        <div class="filter-tags">
+          <button class="tag active" data-genre="all">Tous</button>
+          <button class="tag" data-genre="action">Action</button>
+          <button class="tag" data-genre="drama">Drame</button>
+          <button class="tag" data-genre="sci-fi">Sci-Fi</button>
+          <button class="tag" data-genre="thriller">Thriller</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="movies-section" id="films">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Films populaires</h2>
+          <div class="header-controls">
+            <div class="sort-control">
+              <label class="sort-label" for="sortSelect">Trier par</label>
+              <select id="sortSelect" class="sort-select">
+                <option value="rating" selected>Classement (note)</option>
+                <option value="genre">Genre (A-Z)</option>
+              </select>
+            </div>
+            <div class="view-toggle" aria-label="Choisir le type d'affichage">
+              <button class="view-btn active" data-view="grid" type="button">
+                <i class="fas fa-th" aria-hidden="true"></i>
+              </button>
+              <button class="view-btn" data-view="list" type="button">
+                <i class="fas fa-list" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="movies-grid" id="moviesGrid"></div>
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p>Chargement...</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal" id="movieModal">
+      <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        tabindex="-1"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalDescription"
+      >
+        <button
+          class="modal-close"
+          id="modalClose"
+          type="button"
+          aria-label="Fermer la fenêtre"
+        >
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <section class="favorites-section" id="favoris">
+      <div class="container">
+        <h2 class="section-title">Mes favoris</h2>
+        <div class="favorites-grid" id="favoritesGrid">
+          <p class="empty-state">Aucun film favori</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-logo">
+          <i class="fas fa-film"></i><span>Cinéma Explorer</span>
+        </div>
+        <p>© 2025 Cinéma Explorer</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
